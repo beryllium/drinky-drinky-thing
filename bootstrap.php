@@ -6,6 +6,7 @@ require_once __DIR__.'/config.php';
 $app = new Silex\Application();
 
 $app['debug'] = isset($debug) ? $debug : false;
+$app['extra'] = isset($extra) ? $extra : false;
 
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
         'db.options' => $db_settings,

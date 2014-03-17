@@ -9,6 +9,7 @@ $app = require_once __DIR__ . '/../bootstrap.php';
 $app->get(
     '/',
     function (Request $request) use ($app) {
+        $EXTRA  = $app['extra'];
         $output = <<<DRINKYDRINKY_OUT
 <!DOCTYPE html>
 <html lang="en">
@@ -20,13 +21,27 @@ $app->get(
 
     <link href="/components/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/css/style.css" rel="stylesheet"/>
+    <style type="text/css">
+    div.place {
+        padding: 8px 8px 8px 8px;
+        background-color: #aaa;
+    }
+
+    div.place:nth-child(odd) {
+        background-color: #ddd;
+    }
+
+    .footer {
+        text-align: center;
+    }
+    </style>
 </head>
 <body>
 <div class="container">
 <h1>Drinky Drinky Thing</h1>
 <h5><small>Accuracy is not guaranteed.</small></h5>
-<h3>Please don't drink and drive. Call a cab (#TAXI / #8294 on any cellphone) or use BC Transit.</h3>
-<h3>Nearby liquor establishments of many types:</h3>
+<h4>Please don't drink and drive. Call a cab (#TAXI / #8294 on any cellphone) or use BC Transit.</h4>
+<h4>Nearby liquor establishments of many types:</h4>
 <div id="nearby"></div>
 </div>
 <div class="footer">
@@ -44,21 +59,16 @@ a <a href="http://whateverthing.com">whateverthing</a> project
             $.each( data, function( key, val ) {
                 /*items.push( "<li id='res" + val.id + "'><a href='/restaurant/" + val.id + "'>" + val.name + "</a> <small>" + Math.round(val.distance * 100) / 100 + " km</small></li>" );*/
                 items.push(
-                    "<tr><td><small>" +
-                    val.type +
-                    "</small></td>" +
-                    "<td>" +
-                    val.name +
-                    "</td>" +
-                    "<td><small>" +
-                    val.address1 + " " + val.address2 + ", " + val.city +
-                    "</small></td>" +
-                    "<td>" +
-                    Math.round(val.distance * 100) / 100 +
-                    "km</td></tr>"
+                    '<div class="place"><div class="row">' +
+                    '<div class="col-xs-8 col-md-8"><strong>' + val.name + '</strong></div>' +
+                    '<div class="col-xs-4 col-md-4">' + Math.round(val.distance * 100) / 100 + 'km</div>' +
+                    '</div><div class="row">' +
+                    '<div class="col-xs-8 col-md-8"><small>' + val.address1 + " " + val.address2 + ", " + val.city + '</small></div>' +
+                    '<div class="col-xs-4 col-md-4"><small>' + val.type + '</small></div>' +
+                    '</div></div>'
                 );
             });
-            $( "<table/>", {
+            $( "<div/>", {
                 "class": "my-new-list",
                 html: items.join( "" )
             }).replaceAll( "#nearby" );
@@ -75,7 +85,7 @@ else
     $('#nearby').replaceAll('<p class="lead">GeoLocation is not supported by your browser. Abandon all hope, ye who enter here.</p>');
 }
 </script>
-
+$EXTRA
 </body>
 </html>
 DRINKYDRINKY_OUT;

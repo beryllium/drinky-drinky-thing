@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+
+$app = require_once __DIR__ . '/../bootstrap.php';
+
+$app->register(new \Knp\Provider\ConsoleServiceProvider(), array(
+        'console.name'              => 'GrubThing',
+        'console.version'           => '1.0.0',
+        'console.project_directory' => __DIR__.'/..'
+    ));
+
+$console = $app['console'];
+
+// register commands
+$console->add(new \Whateverthing\Drinky\Command\DrinkyDataCommand());
+$console->add(new \Whateverthing\Drinky\Command\DrinkyGeocoderCommand());
+$console->add(new \Whateverthing\Drinky\Command\DrinkyAddressFixerCommand());
+
+// - fetch new establishment dataset
+// - refresh geocoder values for each location
+
+// launch the console
+$console->run();

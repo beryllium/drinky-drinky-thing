@@ -1,0 +1,26 @@
+{
+    "name": "beryllium/drinky-drinky-thing",
+    "description": "DrinkyDrinkyThing: a silex geocoder demo",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kevin Boyd",
+            "email": "kevin.boyd@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "silex/silex": "*",
+        "doctrine/dbal": "*",
+        "geocoder-php/geocoder-service-provider": "@stable",
+        "knplabs/console-service-provider": "*",
+        "components/jquery": "*",
+        "components/bootstrap": "*"
+    },
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+    "config": {
+        "component-dir": "web/components"
+    }
+}

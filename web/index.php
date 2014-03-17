@@ -39,7 +39,7 @@ $app->get(
 <body>
 <div class="container">
 <h1>Drinky Drinky Thing</h1>
-<h5><small>Accuracy is not guaranteed.</small></h5>
+<h5><small>Accuracy is not guaranteed. Tailored for Victoria, BC, and surrounding areas.</small></h5>
 <h4>Please don't drink and drive. Call a cab (#TAXI / #8294 on any cellphone) or use BC Transit.</h4>
 <h4>Nearby liquor establishments of many types:</h4>
 <div id="nearby"></div>

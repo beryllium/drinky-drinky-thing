@@ -59,8 +59,11 @@ class DrinkyGeocoderCommand extends Command
         foreach ($entries as $entry) {
             try {
                 $geocodeResult = $geocoder->geocode($entry['geocode_address']);
+                $output->writeln('Coordinates Received: ' . $entry['name'] . ' [ ' . $entry['geocode_address'] . ' ]');
                 sleep(5);
             } catch (\Exception $e) {
+                $output->writeln('Signal Lost: ' . $entry['name'] . ' [ ' . $entry['geocode_address'] . ' ] Because: ' . $e->getMessage());
+
                 $result = $db->executeQuery(
                     $updateFail,
                     array(

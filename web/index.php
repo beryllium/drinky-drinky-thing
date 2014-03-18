@@ -51,6 +51,7 @@ a <a href="http://whateverthing.com">whateverthing</a> project
 <script src="/components/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+    counterVar = 0;
     function success(pos) {
         crd = pos.coords;
         /*document.getElementById('loc').innerHTML = crd.latitude + ', ' + crd.longitude;*/
@@ -69,7 +70,8 @@ a <a href="http://whateverthing.com">whateverthing</a> project
                 );
             });
             $( "<div/>", {
-                "class": "my-new-list",
+                "class": "my-new-list" + counterVar++,
+                "id": "nearby",
                 html: items.join( "" )
             }).replaceAll( "#nearby" );
         }, "json");

@@ -41,6 +41,12 @@ class DrinkyGeocoderCommand extends Command
                             'sidney',
                             'sooke',
                             'victoria',
+                            'view royal',
+                            'vancouver',
+                            'richmond',
+                            'surrey',
+                            'coquitlam',
+                            'port coquitlam',
                         )
                     ) .
                     '") AND geocode_raw = \'\' AND (latitude=0 OR longitude=0 OR longitude IS NULL or latitude IS NULL) ORDER BY RAND() LIMIT 50';
@@ -53,7 +59,7 @@ class DrinkyGeocoderCommand extends Command
         foreach ($entries as $entry) {
             try {
                 $geocodeResult = $geocoder->geocode($entry['geocode_address']);
-                sleep(2);
+                sleep(5);
             } catch (\Exception $e) {
                 $result = $db->executeQuery(
                     $updateFail,
@@ -62,7 +68,7 @@ class DrinkyGeocoderCommand extends Command
                         'msg' => $e->getMessage(),
                     )
                 );
-                sleep(2);
+                sleep(5);
                 continue;
             }
 

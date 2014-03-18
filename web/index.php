@@ -20,7 +20,7 @@ $app->get(
     <meta charset="utf-8">
 
     <link href="/components/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/css/style.css" rel="stylesheet"/>
+    <link href="/style.css" rel="stylesheet"/>
     <style type="text/css">
     div.place {
         padding: 8px 8px 8px 8px;
@@ -49,44 +49,8 @@ a <a href="http://whateverthing.com">whateverthing</a> project
 </div>
 <script src="/components/jquery/jquery.min.js"          type="text/javascript"></script>
 <script src="/components/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/lookup.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-    counterVar = 0;
-    function success(pos) {
-        crd = pos.coords;
-        /*document.getElementById('loc').innerHTML = crd.latitude + ', ' + crd.longitude;*/
-        $.post( "/nearby", {'lat':crd.latitude, 'long':crd.longitude}, function(data, textStatus) {
-            var items = [];
-            $.each( data, function( key, val ) {
-                /*items.push( "<li id='res" + val.id + "'><a href='/restaurant/" + val.id + "'>" + val.name + "</a> <small>" + Math.round(val.distance * 100) / 100 + " km</small></li>" );*/
-                items.push(
-                    '<div class="place"><div class="row">' +
-                    '<div class="col-xs-8 col-md-8"><strong>' + val.name + '</strong></div>' +
-                    '<div class="col-xs-4 col-md-4">' + Math.round(val.distance * 100) / 100 + 'km</div>' +
-                    '</div><div class="row">' +
-                    '<div class="col-xs-8 col-md-8"><small>' + val.address1 + " " + val.address2 + ", " + val.city + '</small></div>' +
-                    '<div class="col-xs-4 col-md-4"><small>' + val.type + '</small></div>' +
-                    '</div></div>'
-                );
-            });
-            $( "<div/>", {
-                "class": "my-new-list" + counterVar++,
-                "id": "nearby",
-                html: items.join( "" )
-            }).replaceAll( "#nearby" );
-        }, "json");
-        console.log(crd.latitude + ', ' + crd.longitude);
-    }
-
-if (navigator.geolocation) {
-    $('#nearby').html('<p class="lead">GeoLocating ... Please wait. <small>Unless you said no to the popup, in which case, you will be waiting a long, long time.</small></p>');
-    navigator.geolocation.watchPosition(success);
-}
-else
-{
-    $('#nearby').replaceAll('<p class="lead">GeoLocation is not supported by your browser. Abandon all hope, ye who enter here.</p>');
-}
-</script>
 $EXTRA
 </body>
 </html>

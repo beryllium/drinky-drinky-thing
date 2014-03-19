@@ -7,4 +7,23 @@ DrinkyDrinkyThing is a geocoding and geolocation demonstration app built in Sile
 
 **Live Demo Site:** http://drinkydrinky.grubthing.com/ (Note: only contains data for the Vancouver and Victoria area, so if you're not loading it from there, don't expect any results :) )
 
+## Configuration
+
+Create a file called config.php:
+
+    // config.php
+    <?php
+    $db_settings = array(
+        'driver'   => 'pdo_mysql',
+        'dbname'   => DB_NAME,
+        'user'     => DB_USER,
+        'password' => DB_PASS,
+        'host'     => DB_HOST,
+        'port'     => DB_PORT,
+    );
+
+    // optional, to enable debugging information:
+    // $debug = true;
+
+---
 A [whateverthing](http://whateverthing.com) project.

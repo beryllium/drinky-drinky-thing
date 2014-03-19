@@ -7,7 +7,7 @@ DrinkyDrinkyThing is a geocoding and geolocation demonstration app built in Sile
 
 **Live Demo Site:** http://drinkydrinky.grubthing.com/ (Note: only contains data for the Vancouver and Victoria area, so if you're not loading it from there, don't expect any results :) )
 
-## Configuration
+### Configuration
 
 Create a file called config.php:
 
@@ -24,6 +24,10 @@ Create a file called config.php:
 
     // optional, to enable debugging information:
     // $debug = true;
+
+### Database
+
+The DB schema is provided in schema/db\_schema.sql - it's based on the CSV headers for the BC liquor licence dataset, but it could be easily cleaned up for other data as well.
 
 ---
 A [whateverthing](http://whateverthing.com) project.
